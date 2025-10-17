@@ -1,75 +1,70 @@
-# ⚡ Building Energy Consumption Prediction using Deep Learning
+# 🧠 Building a Deep Learning Model for Office Energy Consumption Prediction
 
-This project focuses on predicting **building energy consumption** using **Artificial Neural Networks (ANN)**.  
-The model analyzes environmental and operational factors such as temperature, humidity, and occupancy to estimate total energy usage — providing insights for improving building efficiency and sustainability.
+This project focuses on developing a **Deep Learning regression model** using **Artificial Neural Networks (ANNs)** to predict **office building energy consumption** based on environmental and operational factors such as temperature, humidity, occupancy, and renewable energy use.  
+The goal is to leverage neural networks to improve energy efficiency insights and support sustainable facility management.
+
+---
+
+## 📘 Overview
+
+Efficient energy management is crucial for reducing operational costs and promoting sustainability.  
+This project explores multiple ANN architectures using both **Sequential** and **Functional API** approaches in TensorFlow/Keras.  
+By comparing baseline and optimized models, the study identifies the most effective network configuration for energy consumption prediction.
 
 ---
 
 ## 📊 Dataset Overview
 
-The dataset contains building operational and environmental metrics collected over various months, hours, and conditions.  
-Each record represents a snapshot of building energy data with the following key features:
-
 | Feature | Description |
 |----------|-------------|
-| **Month, Hour, DayOfWeek, Holiday** | Temporal and calendar-based features |
+| **Month, Hour, DayOfWeek, Holiday** | Temporal and categorical indicators |
 | **Temperature, Humidity** | Environmental conditions |
-| **SquareFootage, Occupancy** | Building size and usage intensity |
-| **HVACUsage, LightingUsage, RenewableEnergy** | Operational energy factors |
-| **EnergyConsumption** | Target variable representing total building energy usage (kWh) |
+| **SquareFootage, Occupancy** | Building and operational factors |
+| **HVACUsage, LightingUsage, RenewableEnergy** | Energy-related operational features |
+| **EnergyConsumption** | Target variable (kWh) |
+
+The dataset was split into **Train (70%)**, **Validation (10%)**, and **Test (20%)** to ensure robust model evaluation.
 
 ---
 
-## 🧠 Methodology
+## ⚙️ Methodology
 
-### 1️⃣ Exploratory Data Analysis (EDA)
-- Checked data distribution, missing values, and feature correlations.  
-- Detected categorical columns (`Holiday`, `HVACUsage`, `LightingUsage`) requiring encoding.  
-- Split dataset into **train (70%)**, **validation (10%)**, and **test (20%)** for model development.  
+### 1. Data Preprocessing
+- Performed exploratory data analysis (EDA) to identify missing values and data inconsistencies.  
+- Encoded categorical features (e.g., *HVACUsage*, *LightingUsage*, *Holiday*) and scaled numerical values using **StandardScaler**.  
+- Split data into training, validation, and test sets with a **70:10:20** ratio.
 
-### 2️⃣ Model Development
-Developed and compared **4 neural network models**:
+### 2. Model Development
+Developed and compared four ANN models:
+- **Baseline Sequential Model**  
+- **Baseline Functional Model**  
+- **Modified Sequential Model** (Leaky ReLU, Batch Normalization, Dropout)  
+- **Modified Functional Model** (enhanced architecture with activation tuning)
 
-| Model Type | Architecture | Description |
-|-------------|---------------|--------------|
-| **Model 1 - Sequential (Baseline)** | 2 hidden layers, ReLU activation | Basic ANN with standard architecture |
-| **Model 2 - Functional (Baseline)** | 2 hidden layers, ReLU activation | Same as Sequential but using Keras Functional API |
-| **Model 3 - Sequential (Modified)** | 3 hidden layers, ReLU + Dropout | Tuned neurons & added regularization |
-| **Model 4 - Functional (Modified)** | 3 hidden layers, ReLU + LeakyReLU | Enhanced depth and non-linearity handling |
-
-Each model was trained for **10 epochs** using the **Adam optimizer** and **Mean Squared Error (MSE)** as the loss function.
-
----
-
-## 📈 Evaluation Metrics
-
-All models were evaluated using multiple regression metrics:
-
-- **Mean Absolute Error (MAE)**  
-- **Mean Squared Error (MSE)**  
-- **R² Score**
-
-| Model | MAE ↓ | MSE ↓ | R² ↑ | Notes |
-|--------|--------|--------|-------|-------|
-| Sequential (Baseline) | — | — | — | Stable baseline |
-| Functional (Baseline) | — | — | — | Similar performance |
-| Sequential (Modified) | — | — | — | Improved generalization |
-| Functional (Modified) | — | — | — | Best performance overall |
-
-> *(You can fill in the numeric values from your notebook results when uploading to GitHub.)*
+### 3. Training
+- All models trained for a minimum of **10 epochs** using the **Adam optimizer**.  
+- Implemented **early stopping** and **learning rate tuning** for model stability.
 
 ---
 
-## 🔍 Key Insights
-- Temperature, humidity, and occupancy showed the strongest correlation with energy consumption.  
-- Deeper networks (3 layers) performed better at capturing nonlinear relationships.  
-- Regularization techniques (Dropout, ReLU variants) helped reduce overfitting.  
+## 📈 Model Evaluation
+
+Models were evaluated using three key regression metrics:
+
+| Model | MSE | MAE | R² | Summary |
+|--------|------|------|------|----------|
+| **Baseline Sequential** | 61.86 | 6.25 | 0.175 | High error, limited variance explanation |
+| **Baseline Functional** | 62.45 | 6.27 | 0.168 | Similar to baseline Sequential |
+| **Modified Sequential** | 57.57 | 5.99 | 0.233 | Best performance, reduced error and improved fit |
+| **Modified Functional** | 57.59 | 5.96 | 0.232 | Comparable to Modified Sequential |
+
+### 🔍 Insights
+- Incorporating **Leaky ReLU**, **Batch Normalization**, and **Dropout** layers improved model performance significantly.  
+- The **Modified Sequential Model** achieved the **lowest MSE (57.57)** and **highest R² (0.233)**, making it the best-performing model.
 
 ---
 
-## 🧾 Results Summary
-The final **Functional ANN (Modified)** model achieved the best balance between accuracy and generalization, demonstrating the potential of deep learning for **energy efficiency forecasting** and **smart building management**.
-
----
-
-## 🧩 Project Structure
+## 🧾 Conclusion
+- Deep learning models effectively captured non-linear relationships between environmental and operational features in energy usage.  
+- The optimized ANN architecture enhanced prediction accuracy and reduced overfitting.  
+- This experiment demonstrates how ANN-based regression can be a powerful tool for **smart building energy management**.
