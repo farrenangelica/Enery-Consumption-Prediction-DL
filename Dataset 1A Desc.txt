@@ -1,0 +1,14 @@
+Goal: Predict the amount of energy consumed by a building with solar panel!
+
+- **Month**: The month of the year when the data was recorded.
+- **Hour**: The hour of the day when the data was recorded.
+- **DayOfWeek**: The day of the week when the data was recorded.
+- **Holiday**: Indicates whether the day was a holiday (Yes/No).
+- **Temperature**: The average daily temperature in Celsius
+- **Humidity**: The average daily humidity level (%).
+- **SquareFootage**: The area of the building being monitored in square meters.
+- **Occupancy**: The total number of people occupying the building.
+- **HVACUsage**: Indicates whether the HVAC system was in use (On/Off).
+- **LightingUsage**: Indicates whether the lighting system was in use (On/Off).
+- **RenewableEnergy**: The amount of renewable energy generated at the time of data collection.
+- **EnergyConsumption**: The amount of energy consumed at the time of data collection.
